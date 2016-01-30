@@ -1,0 +1,19 @@
+{
+  "name": "adventureme",
+  "version": "0.0.1",
+  "description": "App that finds places for you to visit given a certain budget",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanLombardy/adventureMe.git"
+  },
+  "author": "Amanda Keogh Dan Lombardy Gin Wang David Jimison",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DanLombardy/adventureMe/issues"
+  },
+  "homepage": "https://github.com/DanLombardy/adventureMe#readme"
+}
