@@ -1,8 +1,7 @@
 <html>
 <head>
 	<title>Adventure Me</title>
-	<script src="js/jquery-2.1.4.min.js"></script>
-	<script src="airportData.js"></script>
+	
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/entryform.js"></script>
 	<script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
@@ -148,42 +147,24 @@
 		</div>
 		<div id="holder">
 			<h2>Below are a list of locations that match your budget.<br/>Click to customize the activities you can do!</h2>
-			<div id="jViewer" class="cityViewer">
-				<div class="watermark"><img src="imgs/adventureMe_white.png"/></div>
-				<div class="cityLabel"><span class="cityTag">Johannesburg</span></div>
-				<div class="topImage"><img src="imgs/london/lxmedia-169503-1005x565-0.jpeg" /></div>
-				<div class="animation"><img src="imgs/london/ani.gif"/></div>
-			</div>
 			
-			<div id="londonViewer" class="cityViewer">
-				<div class="watermark"><img src="imgs/adventureMe_white.png"/></div>
-				<div class="cityLabel"><span class="cityTag">London</span></div>
-				<div class="topImage"><img src="imgs/london/lxmedia-169503-1005x565-0.jpeg" /></div>
-				<div class="animation"><img src="imgs/london/ani.gif"/></div>
-			</div>
-			
-			<div id="londonViewer" class="cityViewer">
-				<div class="watermark"><img src="imgs/adventureMe_white.png"/></div>
-				<div class="cityLabel"><span class="cityTag">London</span></div>
-				<div class="topImage"><img src="imgs/london/lxmedia-169503-1005x565-0.jpeg" /></div>
-				<div class="animation"><img src="imgs/london/ani.gif"/></div>
-			</div>
-			
-			<div id="londonViewer" class="cityViewer">
-				<div class="watermark"><img src="imgs/adventureMe_white.png"/></div>
-				<div class="cityLabel"><span class="cityTag">London</span></div>
-				<div class="topImage"><img src="imgs/london/lxmedia-169503-1005x565-0.jpeg" /></div>
-				<div class="animation"><img src="imgs/london/ani.gif"/></div>
-			</div>
+			<script>
+				var cities = ["NewYork","Seattle","Chicago","LosAngeles","Atlanta","Orlando","DallasFortWorth","Denver","Miami","Newark","SanFrancisco","Houston","Beijing","Dubai","Tokyo","London","HongKong","Bangkok","Shanghai","Paris","Guangzhou","Singapore","Istanbul","Seoul","Frankfurt","Amsterdam","Delhi","SaoPaulo","Johannesburg","Cairo","Moscow","Sydney","Prague","Rome"];
+				
+				for(var i=0; i<cities.length;i++){
+					var str = '<div id="'+cities[i]+'Viewer" class="cityViewer">';
+					str+='<div class="watermark"><img src="imgs/adventureMe_white.png"/></div>';
+					str+='<div class="cityLabel"><span class="cityTag">'+cities[i]+'</span></div>';
+					str+='<div class="topImage"><img src="imgs/'+cities[i]+'/cover.jpeg" /></div>';
+					str+='<div class="animation"><img src="imgs/'+cities[i]+'/animation.gif"/></div>';
+					str+='</div>';
+					$('#holder').append(str);
+				}
+
+				
+			</script>			
 			
 			
-			<div id="londonViewer" class="cityViewer">
-				<div class="watermark"><img src="imgs/adventureMe_white.png"/></div>
-				<div class="cityLabel"><span class="cityTag">London</span></div>
-				<div class="topImage"><img src="imgs/london/lxmedia-169503-1005x565-0.jpeg" /></div>
-				<div class="animation"><img src="imgs/london/ani.gif"/></div>
-			</div>
-		</div>
 		
 		
 	</div>
