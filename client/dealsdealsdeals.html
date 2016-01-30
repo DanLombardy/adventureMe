@@ -1,0 +1,71 @@
+<html>
+<head>
+	<title>Adventure Me</title>
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="airportData.js"></script>
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+	<link rel="stylesheet" href="js/jquery-ui-1.11.4.custom/jquery-ui.css">
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,900,400italic,300italic' rel='stylesheet' type='text/css'>
+	
+	
+<!-- 	this is bullshit -->
+	<script src="thingsToDodata.js"></script>
+	
+<!-- 	end the bullshit -->
+	<script>
+
+			$(function() {
+			    $( "#leaving" ).datepicker();
+			    $( "#returning" ).datepicker();
+			});
+			
+			
+	</script>
+	<style>
+		body{
+			margin:0px;
+			font-family: 'Lato', sans-serif;
+		}
+		#container{
+			width:100vw;
+			height:100vh;
+		}
+		.background{
+			  background: url("imgs/cover_1.png") no-repeat center center fixed; 
+			  -webkit-background-size: cover;
+			  -moz-background-size: cover;
+			  -o-background-size: cover;
+			  background-size: cover;
+		}
+		
+		#entryForm{
+			background-color: #000000;
+		    padding: 2vw;
+		    width: 80vw;
+		    max-width: 800px;
+		    opacity: .85;
+		    position: relative;
+		    z-index: 2;
+		    top: 80vh;
+		    text-align: center;
+		    margin-left: auto;
+		    margin-right: auto;
+		   
+		}
+		
+	</style>
+</head>
+
+<body>
+	<div id="container">
+		<div id="2doImgs"></div>
+		<script>
+			for(thing in things2do.activities){
+				var data = '<img src="'+things2do.activities[thing].imageUrl+'"/>';
+				$('#2doImgs').append(data);
+			}
+		</script>
+	</div>
+</body>
+</html>
