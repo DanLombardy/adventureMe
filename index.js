@@ -19,6 +19,8 @@ app.use('/node_modules', express.static(__dirname + '/node_modules'));
 //event database seeders
 //Pull data from eventbrite
 
+//pull data from 
+
 
 // socket emitters and broadcasters
 io.on(enums.CONNECTION, function(socket){
