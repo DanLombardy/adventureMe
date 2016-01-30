@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/DanLombardy/adventureMe/issues"
   },
-  "homepage": "https://github.com/DanLombardy/adventureMe#readme"
+  "homepage": "https://github.com/DanLombardy/adventureMe#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "gulp": "^3.9.0",
+    "jshint": "^2.9.1",
+    "mongoose": "^4.3.7"
+  }
 }
