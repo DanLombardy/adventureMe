@@ -6,6 +6,12 @@
 	<script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
 	<link rel="stylesheet" href="js/jquery-ui-1.11.4.custom/jquery-ui.css">
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,900,400italic,300italic' rel='stylesheet' type='text/css'>
+	
+	
+<!-- 	this is bullshit -->
+	<script src="thingsToDodata.js"></script>
+	
+<!-- 	end the bullshit -->
 	<script>
 
 			$(function() {
@@ -51,29 +57,14 @@
 </head>
 
 <body>
-	<div id="container" class="background">
-		<div id="entryForm">
-			<input type="number" placeholder="Spend"/>
-			<input type="text" id="leaving" placeholder="Leaving">
-			<input type="text" id="returning" placeholder="Returning">
-			<select id="numPeople">
-				<script>
-					for(var i=1; i<12;i++){
-						var t='<option value="'+i+'">'+i;
-						if(i>1)
-							t+=" persons";
-						else
-							t+=" person";
-						t+='</option>';
-						
-						$('#numPeople').append(t);
-					}
-				</script>
-			  
-			  <option value="12+">12 or more persons</option>
-			</select>
-			<button>Find Adventures</button>
-		</div>
+	<div id="container">
+		<div id="2doImgs"></div>
+		<script>
+			for(thing in things2do.activities){
+				var data = '<img src="'+things2do.activities[thing].imageUrl+'"/>';
+				$('#2doImgs').append(data);
+			}
+		</script>
 	</div>
 </body>
 </html>
