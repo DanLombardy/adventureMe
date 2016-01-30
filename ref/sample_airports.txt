@@ -1,0 +1,1 @@
+var airports = ["JFK","SEA","ORD","LAX","ATL","MCO","DFW","DEN","MIA","EWR","SFO","IAH","PEK","DXB","HND","LHR","HKG","BKK","PVG","CDG","CAN","SIN","IST","ICN","FRA","AMS","DEL","GRU","JNB","CAI","SVO","SYD","PRG","FCO"]
