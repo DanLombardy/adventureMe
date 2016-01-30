@@ -5,8 +5,7 @@
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
 	<link rel="stylesheet" href="js/jquery-ui-1.11.4.custom/jquery-ui.css">
-</head>
-<body>
+	
 	<script>
 
 			$(function() {
@@ -14,27 +13,62 @@
 		    $( "#returning" ).datepicker();
 		  });
 	</script>
-	<div id="entryForm">
-		<input type="number" placeholder="Spend"/>
-		<input type="text" id="leaving" placeholder="Leaving">
-		<input type="text" id="returning" placeholder="Returning">
-		<select id="numPeople">
-			<script>
-				for(var i=1; i<12;i++){
-					var t='<option value="'+i+'">'+i;
-					if(i>1)
-						t+=" persons";
-					else
-						t+=" person";
-					t+='</option>';
-					
-					$('#numPeople').append(t);
-				}
-			</script>
-		  
-		  <option value="12+">12 or more persons</option>
-		</select>
-		<button>Find Adventures</button>
+	<style>
+		body{
+			margin:0px;
+		}
+		#container{
+			width:100vw;
+			height:100vh;
+			  background: url("imgs/cover_1.png") no-repeat center center fixed; 
+			  -webkit-background-size: cover;
+			  -moz-background-size: cover;
+			  -o-background-size: cover;
+			  background-size: cover;
+		}
+		
+		#entryForm{
+			background-color: #000000;
+		    padding: 2vw;
+		    width: 80vw;
+		    max-width: 800px;
+		    opacity: .85;
+		    position: relative;
+		    z-index: 2;
+		    top: 80vh;
+		    text-align: center;
+		    margin-left: auto;
+		    margin-right: auto;
+		   
+		}
+		
+	</style>
+</head>
+
+<body>
+	<div id="container">
+		<div id="entryForm">
+			<input type="number" placeholder="Spend"/>
+			<input type="text" id="leaving" placeholder="Leaving">
+			<input type="text" id="returning" placeholder="Returning">
+			<select id="numPeople">
+				<script>
+					for(var i=1; i<12;i++){
+						var t='<option value="'+i+'">'+i;
+						if(i>1)
+							t+=" persons";
+						else
+							t+=" person";
+						t+='</option>';
+						
+						$('#numPeople').append(t);
+					}
+				</script>
+			  
+			  <option value="12+">12 or more persons</option>
+			</select>
+			<button>Find Adventures</button>
+		</div>
 	</div>
 </body>
 </html>
