@@ -65,7 +65,7 @@ io.on(enums.CONNECTION, function(socket){
 //@desc goes out to every city and grab the top 100 events happening within the next 2 months
 // ONLY need to run once per machine to populate local mongodb server.
 //eventbriteSeed();
-thingsToDoSeed();
+//thingsToDoSeed();
 
 
 
@@ -86,7 +86,7 @@ var getAdventureBundles = function(budget, startDate, endDate, departureCity, pe
   })
 }
 
-getAdventureBundles(null, null, null, null, null);
+//getAdventureBundles(null, null, null, null, null);
 
 
 
