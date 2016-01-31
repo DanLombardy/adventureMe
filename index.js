@@ -45,10 +45,16 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/adventure_me')
 // socket emitters and broadcasters
 io.on(enums.CONNECTION, function(socket){
     console.log('Client connected...');
+    
+    socket.on('formData', function(data){
+		console.log(data);
+		
+// 		parse data and return data or false, this is a place holder for me
+	socket.emit('potentialAdventures', {number:Math.random()});
+		
+	});
 
-    // socket.on('join', function(data) {
-    //     console.log(data);
-    // });
+
 
 });
 

@@ -2,17 +2,12 @@
 <head>
 	<title>Adventure Me</title>
 	<script src="js/jquery-2.1.4.min.js"></script>
-	<script src="airportData.js"></script>
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
 	<link rel="stylesheet" href="js/jquery-ui-1.11.4.custom/jquery-ui.css">
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,900,400italic,300italic' rel='stylesheet' type='text/css'>
 	
-	
-<!-- 	this is bullshit -->
-	<script src="thingsToDodata.js"></script>
-	
-<!-- 	end the bullshit -->
+
 	<script>
 
 			$(function() {
@@ -60,28 +55,40 @@
 <body>
 	<div id="container">
 		<div id="2doImgs"></div>
+		<!-- 	this is bullshit -->
+		
+<!-- 		need johannesburg -->
+	<script src="../ref/picture_sources/johannesburg.js"></script>
+	<script src="../ref/picture_sources/san_francisco.js"></script>
+	<script src="../ref/picture_sources/sao_paulo.js"></script>
+	<script src="../ref/picture_sources/seattle.js"></script>
+	<script src="../ref/picture_sources/seoul.js"></script>
+	<script src="../ref/picture_sources/shanghai.js"></script>
+	<script src="../ref/picture_sources/singapore.js"></script>
+	<script src="../ref/picture_sources/sydney.js"></script>
+	<script src="../ref/picture_sources/tokyo.js"></script>
+<!-- 		<script src="../ref/picture_sources/"></script> -->
+		
+		
+		<!-- 	end the bullshit -->
 		<script>
+			var city="Johannesburg";
+			$('#2doImgs').append("(cd /Library/WebServer/Documents/adventureMe/client/imgs/;");
+			$('#2doImgs').append("mkdir "+city+";");
+			$('#2doImgs').append("cd "+city+";");
 			var i=0;
-			for(thing in things2do.activities){
+			for(thing in eval(city).activities){
 // 				var data = '<img src="'+things2do.activities[thing].imageUrl+'"/>';
-				var data = "wget http:"+things2do.activities[thing].largeImageURL+";sleep 20; <br/><br/>";
+				var data = "wget http:"+eval(city).activities[thing].largeImageURL+";sleep 1;";
 				$('#2doImgs').append(data);
 				i++;
-				if(i>15)
+				if(i>20)
 					break;
 			}
-			var i=0;
-			$('#2doImgs').append("convert -delay 50  -size 700x394  -dispose previous ");
-			for(thing in things2do.activities){
-// 				var data = '<img src="'+things2do.activities[thing].imageUrl+'"/>';
-				var link = things2do.activities[thing].largeImageURL;
-				link=link.replace("//hopscotch-star.us-east-1.prod.expedia.com/lx/mv/100981/", "");
-				var data = "-page "+link+" ";
-				$('#2doImgs').append(data);
-				i++;
-				if(i>15)
-					break;
-			}
+		
+			$('#2doImgs').append("convert -delay 50  -size 700x394  -dispose previous *  -loop 0  animation.gif");
+			
+			$('#2doImgs').append(")");
 		</script>
 	</div>
 </body>
