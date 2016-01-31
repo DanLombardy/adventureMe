@@ -3,6 +3,53 @@ body{
 	margin:0px;
 	font-family: 'Lato', sans-serif;
 }
+
+input[type="text"]
+
+{
+	margin:5px;
+	font-family: 'Lato';
+    font-size:16px;
+      width:100px;
+}
+input[type="number"]
+
+{
+	margin:5px;
+	font-family: 'Lato';
+    font-size:16px;
+    width:100px;
+}
+input[type="number"]:before { 
+    content: "$ sd ";
+}
+select
+{
+	margin:5px;
+	font-family: 'Lato';
+    font-size:16px;
+    -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   padding:3px;
+     width:100px;
+}
+input[type="button"]
+{
+	margin:5px;
+	font-family: 'Lato';
+	color:yellow;
+    font-size:20px;
+    background-color: #333;
+    border:0px;
+    font-weight: 800;
+}
+input[type="button"]:hover
+{
+	
+	background-color:yellow;
+    color: #333;
+}
 #container{
 	width:100vw;
 	height:100vh;
