@@ -66,10 +66,14 @@ input[type="button"]:hover
 	  background-size: cover;
 }
 
+#departureCity{
+	width:200px;
+}
+
 #entryForm{
 	background-color: #000000;
     padding: 2vw;
-    width: 80vw;
+    width: 85vw;
     max-width: 800px;
     opacity: .85;
     position: relative;
@@ -83,8 +87,8 @@ input[type="button"]:hover
 #entryForm{
 			background-color: #000000;
 		    padding: 2vw;
-		    width: 80vw;
-		    max-width: 800px;
+		    width: 85vw;
+		    max-width: 1000px;
 		    opacity: .85;
 		    position: relative;
 		    z-index: 2;
@@ -162,5 +166,6 @@ input[type="button"]:hover
 			padding-left:20%;
 			text-align: center;
 			width:80%;
+			background-color: #efefef;
 		}
 		
