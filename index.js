@@ -19,7 +19,7 @@ var departureCode = "";
 app.use(express.static('client'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
-// requestDeals();
+requestDeals();
 
 
 //database seeders
