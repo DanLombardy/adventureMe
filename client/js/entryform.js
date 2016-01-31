@@ -1,8 +1,13 @@
 var entryform = function(elem, type){
+	var t = '<form>';
 	var spacer = '';
-	if(type=='sidePanel')
+	if(type=='sidePanel'){
 		spacer="<br/>";
-	var t = '<form><input id="spend" type="number" ';
+		t+='<br/><br/><img src="imgs/adventureMe_white.png"/><br/><br/><br/><br/>';
+	}
+		
+	t+='<input id="spend" type="number" ';
+	
 	if(spendt!=''){
 		console.log(spendt);
 		t+='value="'+spendt+'"';
