@@ -8,10 +8,6 @@ var q = require('async').queue(function(task, callback) {
   callback();
 }, 1);
 
-q.drain = function() {
-  fs.writeFileSync('test.txt', newStuff);
-}
-
 q.push({name: 'bar'}, function (err) {
     console.log('finished processing bar');
 });
@@ -19,5 +15,9 @@ q.push({name: 'bar'}, function (err) {
 q.push([{name: 'baz'},{name: 'bay'},{name: 'bax'}], function(err) {
   console.log('done! ');
 });
+
+q.drain = function() {
+  fs.writeFileSync('test.txt', newStuff);
+}
 
 http://terminal2.expedia.com:80/x/deals/packages?originTLA=SEA&destinationTLA=LAS&startDate=2016-02-01&endDate=2016-02-29&lengthOfStay=5&roomCount=1&adultCount=2&childCount=0&infantCount=0&limit=50&sortOrder=Desc&sortStrategy=SavingsPercentage&maxPackagePrice=1000&allowDuplicates=false
