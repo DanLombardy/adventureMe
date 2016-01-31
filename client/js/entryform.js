@@ -57,20 +57,36 @@ function verifySearch(){
 	 
 	 var new_leave = new Date(leavet);
 	 var new_return = new Date(returnt);
-	 
-	var leaveFormatted = "";
-	leaveFormatted+=new_leave.getFullYear();
-	leaveFormatted+="-";
-	leaveFormatted+= parseInt(new_leave.getMonth())+1;
-	leaveFormatted+="-";
-	leaveFormatted+= parseInt(new_leave.getDate());
+
+	var dd = new_leave.getDate();
+	var mm = new_leave.getMonth()+1; //January is 0!
+	var yyyy = new_leave.getFullYear();
 	
-	var returnFormatted = "";
-	returnFormatted+=new_return.getFullYear();
-	returnFormatted+="-";
-	returnFormatted+= parseInt(new_return.getMonth())+1;
-	returnFormatted+="-";
-	returnFormatted+= parseInt(new_return.getDate());
+	if(dd<10) {
+	    dd='0'+dd
+	} 
+	
+	if(mm<10) {
+	    mm='0'+mm
+	} 
+	
+	var leaveFormatted = yyyy+"-"+mm+"-"+dd;
+	
+	
+	var dd = new_return.getDate();
+	var mm = new_return.getMonth()+1; //January is 0!
+	var yyyy = new_return.getFullYear();
+	
+	if(dd<10) {
+	    dd='0'+dd
+	} 
+	
+	if(mm<10) {
+	    mm='0'+mm
+	} 
+	
+
+	var returnFormatted = yyyy+"-"+mm+"-"+dd;	
 	
 	var data = {spend: spendt, leave:leaveFormatted, return:returnFormatted,IATA:departcity,  persons:personst};
 	
