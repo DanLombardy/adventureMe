@@ -88,7 +88,7 @@ var getAdventureDeals = function(budget, startDate, endDate, lengthOfStay, origi
   departureCity = airport.City;
   var airportRelationships = airport.relationships;
   console.log(budget, startDate, endDate, lengthOfStay, originTLA, personCount);
-  seedDeals(budget * .6, startDate, endDate, lengthOfStay, originTLA, function(cities) {
+  seedDeals(budget, startDate, endDate, lengthOfStay, originTLA, function(cities) {
     cities.sort(function(deals1, deals2) {
       return airportRelationships[deals2[0].destinationTLA] - airportRelationships[deals1[0].destinationTLA];
     });
