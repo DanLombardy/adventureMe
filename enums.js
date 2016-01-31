@@ -1,5 +1,6 @@
 module.exports = {
   CONNECTION: 'connection',
   MESSAGE: 'message',
-  DISCONNECT: 'disconnect'
+  DISCONNECT: 'disconnect',
+  API_KEY: 'IpkAtcHnccITkp7vrPmmDggwqVWwpjjO'
 };
