@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 // Eventbrite schema for mongoDB
 //
-var EventbriteSchema = new mongoose.Schema({
+var eventbriteSchema = new mongoose.Schema({
 	capacity: {type: Number},
 	category_id: {type: String},
 	currency: {type: String},
@@ -19,4 +19,4 @@ var EventbriteSchema = new mongoose.Schema({
 	venue: {type: Object}
 });
 
-module.exports = mongoose.model('eventbrite', EventbriteSchema);
+module.exports = mongoose.model('Eventbrite', eventbriteSchema);

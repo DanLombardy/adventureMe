@@ -17,12 +17,15 @@ var personCount = 2;
 var departureCity = "";
 var departureCode = "";
 
+var Eventbrite = require(__dirname + '/models/eventbrite');
+var eventData;
+
 
 //Express routers
 app.use(express.static('client'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
-requestDeals();
+//requestDeals();
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/adventure_me');
 
@@ -61,6 +64,27 @@ io.on(enums.CONNECTION, function(socket){
 //@desc goes out to every city and grab the top 100 events happening within the next 2 months
 // ONLY need to run once per machine to populate local mongodb server.
 //eventbriteSeed();
+
+
+
+// ***********************************************
+
+
+
+//var travelFund = budget * .6;
+//var funFund = budget * .4;
+//deals = dealsRequester();
+
+var getAdventureBundles = function(budget, startDate, endDate, departureCity, personCount) {
+  Eventbrite.find({}, function(err, data) {
+    if (err) console.log(err);
+    console.log('hello 2');
+      //eventData = data;
+      console.log(data);
+  })
+}
+
+getAdventureBundles(null, null, null, null, null);
 
 
 
