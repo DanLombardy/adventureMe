@@ -4,11 +4,13 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var enums = require(__dirname + '/enums.js');
+var eventbriteSeed = require(__dirname + '/lib/eventbriteSeeder.js');
 
 //Express routers
 app.use(express.static('client'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/adventure_me');
 
 
 //database seeders
@@ -32,11 +34,12 @@ io.on(enums.CONNECTION, function(socket){
 
 });
 
+//@desc goes out to every city and grab the top 100 events happening within the next 2 months
+// ONLY need to run once per machine to populate local mongodb server.
+//eventbriteSeed();
 
 
 
-
-
-server.listen(3000, function(){
+server.listen(3010, function(){
   console.log("Server up. All systems go.")
 });
