@@ -90,7 +90,7 @@ var getAdventureDeals = function(budget, startDate, endDate, lengthOfStay, origi
   console.log(budget, startDate, endDate, lengthOfStay, originTLA, personCount);
   seedDeals(budget, startDate, endDate, lengthOfStay, originTLA, function(cities) {
     cities.sort(function(deals1, deals2) {
-      var deals = airportRelationships[deals2[0].destinationTLA] - airportRelationships[deals1[0].destinationTLA];
+      return airportRelationships[deals2[0].destinationTLA] - airportRelationships[deals1[0].destinationTLA];
     });
     var deals = {deals: cities.slice(0,9)};
     console.log(deals);
