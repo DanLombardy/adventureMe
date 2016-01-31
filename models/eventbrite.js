@@ -16,7 +16,8 @@ var EventbriteSchema = new mongoose.Schema({
 	status: {type: String},
 	ticket_classes: {type: Array},
 	url: {type: String},
-	venue: {type: Object}
+	venue: {type: Object},
+	costUSD: {type: Object}
 });
 
 module.exports = mongoose.model('eventbrite', EventbriteSchema);
