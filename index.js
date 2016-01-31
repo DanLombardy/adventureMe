@@ -63,7 +63,17 @@ io.on(enums.CONNECTION, function(socket){
       departureCode = data.IATA;
       console.log(data);
       getAdventureDeals(budget, startDate, endDate, lengthOfStay, departureCode, personCount);
-	});
+	   });
+
+    socket.on('eventRequest', function(data){
+        var remainingMoney = budget - data.cost;
+        getEventData(remainingMoney, startDate, endDate, data.city, function(eventJSON){
+          socket.emit("eventData", eventJSON);
+    });
+
+
+
+    });
 
 
 
@@ -96,7 +106,7 @@ var getAdventureDeals = function(budget, startDate, endDate, lengthOfStay, origi
   console.log(budget, startDate, endDate, lengthOfStay, originTLA, personCount);
   seedDeals(budget, startDate, endDate, lengthOfStay, originTLA, function(cities) {
     cities.sort(function(deals1, deals2) {
-      return airportRelationships[deals2[0].destinationTLA] - airportRelationships[deals1[0].destinationTLA];
+      var deals = airportRelationships[deals2[0].destinationTLA] - airportRelationships[deals1[0].destinationTLA];
     });
     var deals = {deals: cities.slice(0,9)};
     console.log(deals);
@@ -105,19 +115,20 @@ var getAdventureDeals = function(budget, startDate, endDate, lengthOfStay, origi
   });
 };
 
-var getEventData = function(budget, startDate, endDate, city) {
-  Eventbrite.find(/* filter for: remaining budget, city, */
-    { $and:[{"costUSD.cost":{$lte:budget}},{"venue.address.city": city}]}, function(err, data) {
+var getEventData = function(budgetRemaining, startDate, endDate, city, callback) {
+  Eventbrite.find(
+    { $and:[{"costUSD.cost":{$lte:budgetRemaining}},{"venue.address.city": city}]}, function(err, data) {
     if (err) console.log(err);
 
     eventData = data;
-    ThingsToDo.find({$and:[{"costUSD.cost":{$lte:budget}},{"venue.address.city": city}]}, function(err, data) {
+    ThingsToDo.find({$and:[{"costUSD.cost":{$lte:budgetRemaining}},{"venue.address.city": city}]}, function(err, data) {
       if (err) console.log(err);
       var fullData = eventData.concat(data);
       var eventJSON = {
         events: fullData
       };
       console.log(eventJSON);
+      callback(eventJSON);
     });
   });
 };
