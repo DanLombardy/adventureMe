@@ -42,21 +42,23 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/adventure_me')
 //Pull data from eventbrite
 
 //pull data from
-
+var mySocket;
 
 // socket emitters and broadcasters
 io.on(enums.CONNECTION, function(socket){
     console.log('Client connected...');
+    mySocket = socket;
 
     socket.on('formData', function(data){
-      budget = data.budget;
+      budget = data.spend;
       startDate = data.leave;
       endDate = data.return;
       personCount = data.persons;
       //departureCity currently assigned from within getAdventureDeals() function
       departureCode = data.IATA;
       var lengthOfStay = getDateDifference(startDate, endDate);
-      getAdventureDeals(budget, startDate, endDate, lengthOfStay, departureCode, personCount, socket);
+      console.log(data);
+      getAdventureDeals(budget, startDate, endDate, lengthOfStay, departureCode, personCount);
 	});
 
 
@@ -78,20 +80,22 @@ io.on(enums.CONNECTION, function(socket){
 //var funFund = budget * .4;
 //deals = dealsRequester();
 
-var getAdventureDeals = function(budget, startDate, endDate, lengthOfStay, originTLA, personCount, socket) {
+var getAdventureDeals = function(budget, startDate, endDate, lengthOfStay, originTLA, personCount) {
+  console.log("I got here!");
   var airport = require('./ref/distances.js').filter(function(airport) {
     return airport.IATA === originTLA;
   })[0];
   departureCity = airport.City;
   var airportRelationships = airport.relationships;
-  seedDeals(budget * .6, startDate, endDate, lengthOfStay, originTLA, function(cities) {
+  console.log(budget, startDate, endDate, lengthOfStay, originTLA, personCount);
+  seedDeals(budget, startDate, endDate, lengthOfStay, originTLA, function(cities) {
     cities.sort(function(deals1, deals2) {
       return airportRelationships[deals2[0].destinationTLA] - airportRelationships[deals1[0].destinationTLA];
     });
     var deals = {deals: cities.slice(0,9)};
     console.log(deals);
     //   parse data and return data or false, this is a place holder for me
-    socket.emit('potentialAdventures', deals);
+    mySocket.emit('potentialAdventures', deals);
   });
 };
 //
