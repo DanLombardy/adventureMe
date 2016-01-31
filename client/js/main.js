@@ -6,6 +6,9 @@ var personst = "";
 var departcity="";
 var airportData = "";
 
+socket.on('eventData', function(data){
+	console.log("received "+data);
+});
 socket.on('potentialAdventures', function(data){
 		var potentialAdventures = data;
 
