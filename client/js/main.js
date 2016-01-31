@@ -3,6 +3,8 @@ var spendt = "";
 var leavet = "";
 var returnt = "";
 var personst = "";
+var departcity="";
+var airportData = "";
 
   socket.on('potentialAdventures', function(data){
 		var potentialAdventures = data;
@@ -49,7 +51,30 @@ var personst = "";
  });//on potential adventures
 
 $(function() {
-	setDates();
+	
+	
+	//load airport data
+	$.getScript( "airportdata.json", function( data, textStatus, jqxhr ) {
+	  airportData = JSON.parse(data);
+// 	  console.log(airportData);
+
+	var t= '<select id="departureCity">';
+	  for(port in airportData){
+		  var loc = airportData[port].City+", "+airportData[port].Country;
+		 
+		  t+='<option value="'+airportData[port].IATA+'">'+loc+'</option>';
+						
+	  }
+	  
+	  t+= '</select>';
+	  
+	   airportData= t;
+	 
+	  //then after loading add the damn form
+	  
+	  entryform(document.getElementById('entryForm'), "frontpage");
+	  setDates();
+	});
      
 });
 

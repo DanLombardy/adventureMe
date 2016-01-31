@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>Adventure Me</title>
+
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
@@ -16,15 +17,36 @@
 	<script src="js/entryform.js"></script>
 
 </head>
-
+<style >
+	#header{
+		position:relative;
+	}
+	#header>*{
+		position:absolute;
+		top:0;
+		line-height: 416px;
+		text-align: center;
+		font-size: 50px;
+		width:100%;
+	}
+</style>
 <body>
 	<div id="container">
-		<div id="backgroundHolder" class="background">
-
-		<div id="entryForm"></div>
+		<div id="selectionMenu"><div id="leftPanel"></div></div>
+		<script>
+			entryform(document.getElementById('leftPanel'), "sidePanel");
+		</script>
+	<div id="holder">
+		<div id="header">
+			<div><img src="imgs/luggage.png"/></div>
+			<div>from Seattle to London</div>
+		</div>
+			
 		
 	</div>
 	</div>
+	
+	
 
 
 </body>
