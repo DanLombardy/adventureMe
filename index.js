@@ -19,6 +19,8 @@ var departureCity = "";
 var departureCode = "";
 
 var Eventbrite = require(__dirname + '/models/eventbrite');
+var ThingsToDo = require(__dirname + '/models/thingsToDo');
+
 var eventData;
 
 var moment = require('moment');
@@ -63,8 +65,8 @@ io.on(enums.CONNECTION, function(socket){
 
 //@desc goes out to every city and grab the top 100 events happening within the next 2 months
 // ONLY need to run once per machine to populate local mongodb server.
-//eventbriteSeed();
-//thingsToDoSeed();
+// eventbriteSeed();
+// thingsToDoSeed();
 
 
 
@@ -96,17 +98,24 @@ io.on(enums.CONNECTION, function(socket){
 //   callback([[{destinationTLA: "SEA"}, {}, {}], [{destinationTLA: "LAX"}, {}, {}], [{destinationTLA: "HKG"}] ]);
 // }
 //
-// var getEventDeals = function(budget, startDate, endDate, city) {
-//   Eventbrite.find({/* filter for: remaining budget, city, */}, function(err, data) {
-//     if (err) console.log(err);
-//     //
-//     eventData = data;
-//     console.log(data);
-//     ToDo.find({}, function(err, data) {
-//       //broadcast events data
-//     })
-//   })
-// }
+var getEventData = function(budget, startDate, endDate, city) {
+  Eventbrite.find(/* filter for: remaining budget, city, */
+    { $and:[{"costUSD.cost":{$lte:budget}},{"venue.address.city": city}]}, function(err, data) {
+    if (err) console.log(err);
+
+    var eventData = data;
+    ThingsToDo.find({$and:[{"costUSD.cost":{$lte:budget}},{"venue.address.city": city}]}, function(err, data) {
+      if (err) console.log(err);
+      var fullData = eventData.concat(data);
+      var eventJSON = {
+        events: fullData
+      };
+      console.log(eventJSON);
+    });
+  });
+};
+
+getEventData(200,null, null, "New York")
 //
 // //getAdventureBundles(null, null, null, null, null);
 // function getDateDifference(startDate, endDate) {
