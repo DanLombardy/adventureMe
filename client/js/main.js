@@ -18,17 +18,18 @@ socket.on('potentialAdventures', function(data){
 			  return null;
 		  }
 		  
-		  
-		  data.deals.forEach(handleDeals);
-		  //remove this page and load next stuff
-		  console.log("change to next page");
-		   
+		 
+		 
+		 
 		  var t='<div id="selectionMenu"><div id="leftPanel"></div></div><div id="holder"><h2>Below are a list of locations that match your budget.<br/>Click to customize the activities you can do!</h2></div>';
-		  $('#container').html(t);
+		   $('#container').html(t);
 
 		  //load the page elements
 
 		  entryform(document.getElementById('leftPanel'), "sidePanel");
+		  
+		   data.deals.forEach(handleDeals);
+/*
 		  var cities = ["NewYork","Seattle","Chicago","LosAngeles","Atlanta","Orlando","DallasFortWorth","Denver","Miami","Newark","SanFrancisco","Houston","Beijing","Dubai","Tokyo","London","HongKong","Bangkok","Shanghai","Paris","Guangzhou","Singapore","Istanbul","Seoul","Frankfurt","Amsterdam","Delhi","SaoPaulo","Johannesburg","Cairo","Moscow","Sydney","Prague","Rome"];
 
 			for(var i=0; i<cities.length;i++){
@@ -41,6 +42,7 @@ socket.on('potentialAdventures', function(data){
 				str+="<div id='"+cities[i]+"_display' class='dealsBlurb'></div>";
 				$('#holder').append(str);
 			}
+*/
 		$(function() {
 		   	$('.cityViewer').mouseover(function() {
 
@@ -57,37 +59,51 @@ socket.on('potentialAdventures', function(data){
 
 			$('.cityViewer').click(function() {
 				console.log("you clicked "+this.id);
-				var displayStr = "#"+this.id+"_display";
+				var displayStr = "#"+this.id+"_display.dealsBlurb";
 				console.log("you clicked "+this.id, displayStr);
+				$(" .dealsBlurb").css("visibility","hidden");
 
-/*
-				This
-				IS WHERE THERE DATA FROM THEIR
-				FUCNTIONS ON THE DEAL WILL GO AS A STRING
-*/
-				$(displayStr).append("<p>Qui  gochujang labore magna semiotics schlitz.  Mlkshk artisan narwhal, sint  vinyl labore biodiesel small batch aliquip exercitation aute.  Pork belly craft beer freegan synth bushwick.  Helvetica veniam typewriter dreamcatcher, swag tacos labore meh kogi deserunt  brunch umami ad.  Disrupt post-ironic bitters excepteur  beard blue bottle, pabst nulla  distillery mustache enim delectus everyday carry.  XOXO deserunt  blue bottle, waistcoat dolore fixie PBR&amp;B master cleanse ullamco squid.  Yr ex readymade ullamco keffiyeh, voluptate  quis tilde chartreuse flannel man bun sed hammock.</p>");
+				$(displayStr).css("visibility","visible");
 
-				$(displayStr).append("<button onclick='purchase(\""+this.id+"\")'>Check Details</button>")
 			});
 			setDates();
 		});
 
  });//on potential adventures
 
+var cityArr=[];
 function handleDeals(element, index, array) {
-  console.log("a received ",element,element[0].destinationTLA);
+	console.log("city name "+airport_names[element[0].destinationTLA]);
+
+	var cityName = airport_names[element[0].destinationTLA];
+	
+	if($.inArray(cityName, cityArr)<0){
+		cityArr.push(cityName);
+		var str = '<div id="'+cityName+'" class="cityViewer">';
+		str+='<div class="watermark"><img src="imgs/adventureMe_white.png"/></div>';
+		str+='<div class="cityLabel"><span class="cityTag">'+cityName+'</span></div>';
+		str+='<div class="topImage"><img src="imgs/'+cityName+'/cover.jpeg" /></div>';
+		str+='<div class="animation"><img src="imgs/'+cityName+'/animation.gif"/></div>';
+		str+='</div>';
+		str+="<div id='"+cityName+"_display' class='dealsBlurb'>The Total Costs: "+element[0].totalPackagePrice+"<br/>Total Savings:"+element[0].totalPackageSavings;
+		str+="<br/><button onclick='purchase(";
+		str+='"'+cityName+'",'+element[0].totalPackagePrice+")'>Check Details</button> </div>";
+		$('#holder').append(str);
+	  console.log("a received ",element,element[0].destinationTLA,str);
+	}
+	
 }
-function purchase(city){
+function purchase(cityT,costT){
 /*
 	***
 	THIS IS WHERE I HANDLE THE PURCHASE SCREEN
 
 	****
 */
-// 	socket.emit("purchase",city);
+	socket.emit("eventRequest",{city:cityT, cost:costT});
 
 var htm = '<div id="selectionMenu"><div id="leftPanel"></div></div><div id="holder"><div id="header"><div><img src="imgs/luggage.png"/></div><div>from Seattle to ';
-htm+=city+'</div></div></div>';
+htm+=cityT+'</div></div></div>';
 $('#container').html(htm);
 entryform(document.getElementById('leftPanel'), "sidePanel");
 setDates();
