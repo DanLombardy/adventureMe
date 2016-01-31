@@ -5,9 +5,13 @@ var returnt = "";
 var personst = "";
 var departcity="";
 var airportData = "";
-
+var htmCity = "";
 socket.on('eventData', function(data){
-	console.log("received "+data);
+	console.log("eventData Response", data);
+	
+	$('#container').html(htmCity);
+	entryform(document.getElementById('leftPanel'), "sidePanel");
+	setDates();
 });
 socket.on('potentialAdventures', function(data){
 		var potentialAdventures = data;
@@ -20,9 +24,7 @@ socket.on('potentialAdventures', function(data){
 			  //handle a failure
 			  return null;
 		  }
-		  
-		 
-		 
+
 		 
 		  var t='<div id="selectionMenu"><div id="leftPanel"></div></div><div id="holder"><h2>Below are a list of locations that match your budget.<br/>Click to customize the activities you can do!</h2></div>';
 		   $('#container').html(t);
@@ -76,7 +78,7 @@ socket.on('potentialAdventures', function(data){
 
 var cityArr=[];
 function handleDeals(element, index, array) {
-	console.log("city name "+airport_names[element[0].destinationTLA]);
+	
 
 	var cityName = airport_names[element[0].destinationTLA];
 	
@@ -92,8 +94,7 @@ function handleDeals(element, index, array) {
 		str+="<br/><button onclick='purchase(";
 		str+='"'+cityName+'",'+element[0].totalPackagePrice+")'>Check Details</button> </div>";
 		$('#holder').append(str);
-	  console.log("a received ",element,element[0].destinationTLA,str);
-	}
+	  	}
 	
 }
 function purchase(cityT,costT){
@@ -103,13 +104,10 @@ function purchase(cityT,costT){
 
 	****
 */
+	htmCity = '<div id="selectionMenu"><div id="leftPanel"></div></div><div id="holder"><div id="header"><div><img src="imgs/luggage.png"/></div><div>from Seattle to ';
+	htmCity+=cityT+'</div></div></div>';
 	socket.emit("eventRequest",{city:cityT, cost:costT});
-
-var htm = '<div id="selectionMenu"><div id="leftPanel"></div></div><div id="holder"><div id="header"><div><img src="imgs/luggage.png"/></div><div>from Seattle to ';
-htm+=cityT+'</div></div></div>';
-$('#container').html(htm);
-entryform(document.getElementById('leftPanel'), "sidePanel");
-setDates();
+	
 
 }
 
