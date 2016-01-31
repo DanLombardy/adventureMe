@@ -54,7 +54,25 @@ function verifySearch(){
 	 returnt = $('#returning').val();
 	 personst = $('#numPeople').val();
 	 departcity = $('#departureCity').val();
-	var data = {spend: spendt, leave:leavet, IATA:departcity, return:returnt, persons:personst};
+	 
+	 var new_leave = new Date(leavet);
+	 var new_return = new Date(returnt);
+	 
+	var leaveFormatted = "";
+	leaveFormatted+=new_leave.getFullYear();
+	leaveFormatted+="-";
+	leaveFormatted+= parseInt(new_leave.getMonth())+1;
+	leaveFormatted+="-";
+	leaveFormatted+= parseInt(new_leave.getDate());
+	
+	var returnFormatted = "";
+	returnFormatted+=new_return.getFullYear();
+	returnFormatted+="-";
+	returnFormatted+= parseInt(new_return.getMonth())+1;
+	returnFormatted+="-";
+	returnFormatted+= parseInt(new_return.getDate());
+	
+	var data = {spend: spendt, leave:leaveFormatted, return:returnFormatted,IATA:departcity,  persons:personst};
 	
 	console.log(data)
 	 socket.emit('formData', data);
