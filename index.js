@@ -11,18 +11,21 @@ var thingsToDoSeed = require(__dirname + '/lib/thingsToDoSeeder.js');
 var request = require('request');
 var seedDeals = require(__dirname + "/lib/seed-deals.js");
 
+var moment = require('moment');
+var Eventbrite = require(__dirname + '/models/eventbrite');
+var ThingsToDo = require(__dirname + '/models/thingsToDo');
+
 var budget = 0;
 var startDate = "";
 var endDate = "";
 var personCount = 2;
 var departureCity = "";
 var departureCode = "";
+var lengthOfStay = 5;
 
-var Eventbrite = require(__dirname + '/models/eventbrite');
-var ThingsToDo = require(__dirname + '/models/thingsToDo');
+
 var eventData;
 
-var moment = require('moment');
 
 //Express routers
 app.use(express.static('client'));
@@ -53,11 +56,11 @@ io.on(enums.CONNECTION, function(socket){
     socket.on('formData', function(data){
       budget = data.spend;
       startDate = data.leave;
-      endDate = data.return;
+      endDate = datePlus90(startDate);
+      lengthOfStay = data.return;
       personCount = data.persons;
       //departureCity currently assigned from within getAdventureDeals() function
       departureCode = data.IATA;
-      var lengthOfStay = getDateDifference(startDate, endDate);
       console.log(data);
       getAdventureDeals(budget, startDate, endDate, lengthOfStay, departureCode, personCount);
 	});
@@ -107,7 +110,7 @@ var getEventData = function(budget, startDate, endDate, city) {
     { $and:[{"costUSD.cost":{$lte:budget}},{"venue.address.city": city}]}, function(err, data) {
     if (err) console.log(err);
 
-    var eventData = data;
+    eventData = data;
     ThingsToDo.find({$and:[{"costUSD.cost":{$lte:budget}},{"venue.address.city": city}]}, function(err, data) {
       if (err) console.log(err);
       var fullData = eventData.concat(data);
@@ -119,11 +122,11 @@ var getEventData = function(budget, startDate, endDate, city) {
   });
 };
 
-function getDateDifference(startDate, endDate) {
-  var startDate = moment(startDate);
-  var endDate = moment(endDate);
-  return endDate.diff(startDate, 'days');
-}
+function datePlus90(startDate) {
+  var momentStart = moment(startDate);
+  return momentStart.add(90, 'days').format("YYYY-MM-DD");
+};
+
 
 
 
