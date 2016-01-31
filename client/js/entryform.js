@@ -2,9 +2,15 @@ var entryform = function(elem, type){
 	var spacer = '';
 	if(type=='sidePanel')
 		spacer="<br/>";
-	var t = '<input type="number" placeholder="Spend"/>'+spacer;
-	t+='<input type="text" id="leaving" placeholder="Leaving">'+spacer;
-	t+='<input type="text" id="returning" placeholder="Returning">'+spacer;
+	var t = '<form><input id="spend" type="number" ';
+	if(spendt!=''){
+		console.log(spendt);
+		t+='value="'+spendt+'"';
+	}
+		
+	t+='placeholder="Spend" required/>'+spacer;
+	t+='<input type="text" id="leaving" placeholder="Leaving" required>'+spacer;
+	t+='<input type="text" id="returning" placeholder="Returning" required>'+spacer;
 	t+='<select id="numPeople">';
 			
 					for(var i=1; i<12;i++){
@@ -19,8 +25,20 @@ var entryform = function(elem, type){
 					}
 				
 			  
-			 t+=' <option value="12+">12 or more persons</option></select>'+spacer+'<button>Find Adventures</button>';
+			 t+=' <option value="12+">12 or more persons</option></select>'+spacer+'<input type="button" onclick="verifySearch()" value="Find Adventures"/></form>';
 			 
 			 $(elem).append(t);
 
+}
+
+function verifySearch(){
+	spendt = $('#spend').val();
+	leavet = $('#leaving').val();
+	 returnt = $('#returning').val();
+	 personst = $('#numPeople').val();
+	var data = {spend: spendt, leave:leavet, return:returnt, persons:personst};
+	
+	console.log(data)
+	 socket.emit('formData', data);
+	return false;
 }

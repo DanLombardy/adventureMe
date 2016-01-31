@@ -1,150 +1,26 @@
 <html>
 <head>
 	<title>Adventure Me</title>
-	
 	<script src="js/jquery-2.1.4.min.js"></script>
-	<script src="js/entryform.js"></script>
+	<script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+	<script src="js/entryform.js"></script>
 	<link rel="stylesheet" href="js/jquery-ui-1.11.4.custom/jquery-ui.css">
+	<link rel="stylesheet" href="css/style.css">
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,900,400italic,300italic' rel='stylesheet' type='text/css'>
-	
-	
-<!-- 	this is bullshit -->
-	<script src="thingsToDodata.js"></script>
+
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+	<script src="js/socket.io/socket.io.js"></script>
+	<script src="js/main.js"></script>
 	
 <!-- 	end the bullshit -->
-	<script>
 
-			$(function() {
-			    $( "#leaving" ).datepicker();
-			    $( "#returning" ).datepicker();
-			    
-			    $('.cityViewer').mouseover(function() {
-				
-				  var elem = document.getElementById(this.id).getElementsByClassName("topImage");
-				 
-				  $(elem[0]).css("visibility","hidden");
-				});
-				
-				$('.cityViewer').mouseout(function() {
-				
-				  var elem = document.getElementById(this.id).getElementsByClassName("topImage");
-						  $(elem[0]).css("visibility","visible");
-				});
-			});
-			
-	</script>
-	<style>
-		body{
-			margin:0px;
-			font-family: 'Lato', sans-serif;
-		}
-		#container{
-			width:100vw;
-			height:100vh;
-		}
-		.background{
-			  background: url("imgs/cover_1.png") no-repeat center center fixed; 
-			  -webkit-background-size: cover;
-			  -moz-background-size: cover;
-			  -o-background-size: cover;
-			  background-size: cover;
-		}
-		
-		#entryForm{
-			background-color: #000000;
-		    padding: 2vw;
-		    width: 80vw;
-		    max-width: 800px;
-		    opacity: .85;
-		    position: relative;
-		    z-index: 2;
-		    top: 80vh;
-		    text-align: center;
-		    margin-left: auto;
-		    margin-right: auto;
-		   
-		}
-		.cityViewer{
-			border: black solid .5px;
-    position: relative;
-    width: 603px;
-    height: 339px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
-		}
-		.topImage{
-			position: absolute;
-			z-index:2;
-			width:inherit;
-			height:inherit;
-		}
-		.topImage img{
-			width:inherit;
-			height:inherit;
-		}
-		.animation{
-			position: absolute;
-			z-index:1;
-			margin-top: 0px;
-			width:inherit;
-			height:inherit;
-		}
-		.animation img{
-			
-			width:inherit;
-			height:inherit;
-		}
-		.cityLabel{
-			    position: absolute;
-			    z-index: 3;
-			    top: 266px;
-			    /* left: 443px; */
-			    background-color: #000000;
-			    opacity: 0.85;
-			    width: inherit;
-			    text-align: right;
-			    margin-left: auto;
-		}
-		.cityTag{
-			font-family: Lato;
-			color:#ffffff;
-			font-size:50px;
-			padding:3px;
-			opacity: 1;
-			padding-left: 12px; 
-		}
-		.watermark{
-			position:absolute;
-			z-index: 3;
-			padding: 5px;
-		}
-		#selectionMenu{
-			position: fixed;
-			height: 100%;
-			background-color: #000000;
-			width:20%;
-			float: left;
-		}
-		#holder{
-			float: right;
-			padding-left:20%;
-			text-align: center;
-			width:80%;
-		}
-		
-	</style>
 </head>
 
 <body>
 	<div id="container">
-		<div id="selectionMenu">
-			<div id="leftPanel"></div>
-		<script>
-			entryform(document.getElementById('leftPanel'), "sidePanel");
-		</script>
-		</div>
+		
 		<div id="holder">
 			<h2>Below are a list of locations that match your budget.<br/>Click to customize the activities you can do!</h2>
 			

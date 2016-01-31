@@ -1,0 +1,119 @@
+
+body{
+	margin:0px;
+	font-family: 'Lato', sans-serif;
+}
+#container{
+	width:100vw;
+	height:100vh;
+}
+#backgroundHolder{
+	width:inherit;
+	height:inherit;
+}
+.background{
+	  background: url("../imgs/cover_1.png") no-repeat center center fixed;
+	  -webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	  background-size: cover;
+}
+
+#entryForm{
+	background-color: #000000;
+    padding: 2vw;
+    width: 80vw;
+    max-width: 800px;
+    opacity: .85;
+    position: relative;
+    z-index: 2;
+    top: 80vh;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+#entryForm{
+			background-color: #000000;
+		    padding: 2vw;
+		    width: 80vw;
+		    max-width: 800px;
+		    opacity: .85;
+		    position: relative;
+		    z-index: 2;
+		    top: 80vh;
+		    text-align: center;
+		    margin-left: auto;
+		    margin-right: auto;
+		   
+		}
+		.cityViewer{
+			border: black solid .5px;
+		    position: relative;
+		    width: 603px;
+		    height: 339px;
+		    margin-left: auto;
+		    margin-right: auto;
+		    margin-bottom: 20px;
+		    cursor:pointer;
+		}
+		.topImage{
+			position: absolute;
+			z-index:2;
+			width:inherit;
+			height:inherit;
+		}
+		.topImage img{
+			width:inherit;
+			height:inherit;
+		}
+		.animation{
+			position: absolute;
+			z-index:1;
+			margin-top: 0px;
+			width:inherit;
+			height:inherit;
+		}
+		.animation img{
+			
+			width:inherit;
+			height:inherit;
+		}
+		.cityLabel{
+			    position: absolute;
+			    z-index: 3;
+			    top: 266px;
+			    /* left: 443px; */
+			    background-color: #000000;
+			    opacity: 0.85;
+			    width: inherit;
+			    text-align: right;
+			    margin-left: auto;
+		}
+		.cityTag{
+			font-family: Lato;
+			color:#ffffff;
+			font-size:50px;
+			padding:3px;
+			opacity: 1;
+			padding-left: 12px; 
+		}
+		.watermark{
+			position:absolute;
+			z-index: 3;
+			padding: 5px;
+		}
+		#selectionMenu{
+			position: fixed;
+			height: 100%;
+			background-color: #000000;
+			width:20%;
+			float: left;
+		}
+		#holder{
+			float: right;
+			padding-left:20%;
+			text-align: center;
+			width:80%;
+		}
+		
