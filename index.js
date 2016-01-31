@@ -9,7 +9,7 @@ var eventbriteSeed = require(__dirname + '/lib/eventbriteSeeder.js');
 var thingsToDoSeed = require(__dirname + '/lib/thingsToDoSeeder.js');
 
 var request = require('request');
-var requestDeals = require(__dirname + "/lib/seed-deals.js")
+var seedDeals = require(__dirname + "/lib/seed-deals.js");
 
 var budget = 0;
 var startDate = "";
@@ -49,12 +49,14 @@ io.on(enums.CONNECTION, function(socket){
     console.log('Client connected...');
 
     socket.on('formData', function(data){
-      //parse data
-      //getAdventureDeals(budget, startDate, endDate, lengthOfStay, originTLA, personCount, socket);
-		  console.log(data);
-
-
-
+      budget = data.budget;
+      startDate = data.leave;
+      endDate = data.return;
+      personCount = data.persons;
+      //departureCity currently assigned from within getAdventureDeals() function
+      departureCode = data.IATA;
+      var lengthOfStay = getDateDifference(startDate, endDate);
+      getAdventureDeals(budget, startDate, endDate, lengthOfStay, departureCode, personCount, socket);
 	});
 
 
@@ -76,20 +78,22 @@ io.on(enums.CONNECTION, function(socket){
 //var funFund = budget * .4;
 //deals = dealsRequester();
 
-// var getAdventureDeals = function(budget, startDate, endDate, lengthOfStay, originTLA, personCount, socket) {
-//   var airportRelationships = require('./ref/distances.js').filter(function(airport) {
-//     return airport.IATA === originTLA;
-//   })[0].relationships;
-//   seedDeals(budget * .6, startDate, endDate, lengthOfStay, originTLA, function(cities) {
-//     cities.sort(function(deals1, deals2) {
-//       return airportRelationships[deals2[0].destinationTLA] - airportRelationships[deals1[0].destinationTLA];
-//     });
-//     var deals = {deals: cities.slice(0,9)};
-//     console.log(deals);
-//     //   parse data and return data or false, this is a place holder for me
-//     socket.emit('potentialAdventures', deals);
-//   });
-// };
+var getAdventureDeals = function(budget, startDate, endDate, lengthOfStay, originTLA, personCount, socket) {
+  var airport = require('./ref/distances.js').filter(function(airport) {
+    return airport.IATA === originTLA;
+  })[0];
+  departureCity = airport.City;
+  var airportRelationships = airport.relationships;
+  seedDeals(budget * .6, startDate, endDate, lengthOfStay, originTLA, function(cities) {
+    cities.sort(function(deals1, deals2) {
+      return airportRelationships[deals2[0].destinationTLA] - airportRelationships[deals1[0].destinationTLA];
+    });
+    var deals = {deals: cities.slice(0,9)};
+    console.log(deals);
+    //   parse data and return data or false, this is a place holder for me
+    socket.emit('potentialAdventures', deals);
+  });
+};
 //
 // //for tests only
 // var seedDeals = function(budget, startDate, endDate, originTLA, personCount, callback) {
@@ -108,12 +112,11 @@ io.on(enums.CONNECTION, function(socket){
 //   })
 // }
 //
-// //getAdventureBundles(null, null, null, null, null);
-// function getDateDifference(startDate, endDate) {
-//   var startDate = moment(startDate);
-//   var endDate = moment(endDate);
-//   return endDate.diff(startDate, 'days');
-// }
+function getDateDifference(startDate, endDate) {
+  var startDate = moment(startDate);
+  var endDate = moment(endDate);
+  return endDate.diff(startDate, 'days');
+}
 //
 // getAdventureDeals(null, null, null, null, "JFK", null);
 
