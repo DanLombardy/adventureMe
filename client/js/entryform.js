@@ -60,6 +60,7 @@ var entryform = function(elem, type){
 }
 
 function verifySearch(){
+	cityArr=[];
 	var htt = '<div id="advertisement"><div id="adholder">While we find you the best adventures for your budget, please enjoy this message from our sponsor<br/><iframe width="560" height="315" src="https://www.youtube.com/embed/HCQFoa1X_-g?autoplay=1&controls=0" frameborder="0" allowfullscreen></iframe></div></div>';
 
 	$('#container').append(htt);
