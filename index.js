@@ -6,6 +6,7 @@ var io = require('socket.io')(server);
 var enums = require(__dirname + '/enums.js');
 
 var eventbriteSeed = require(__dirname + '/lib/eventbriteSeeder.js');
+var thingsToDoSeed = require(__dirname + '/lib/thingsToDoSeeder.js');
 
 var request = require('request');
 var requestDeals = require(__dirname + "/lib/seed-deals.js")
@@ -64,6 +65,7 @@ io.on(enums.CONNECTION, function(socket){
 //@desc goes out to every city and grab the top 100 events happening within the next 2 months
 // ONLY need to run once per machine to populate local mongodb server.
 //eventbriteSeed();
+thingsToDoSeed();
 
 
 
