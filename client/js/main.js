@@ -15,11 +15,14 @@ socket.on('potentialAdventures', function(data){
 
 		  if(!data){
 			  //handle a failure
+			  return null;
 		  }
-
+		  
+		  
+		  data.deals.forEach(handleDeals);
 		  //remove this page and load next stuff
 		  console.log("change to next page");
-      console.log(data);
+		   
 		  var t='<div id="selectionMenu"><div id="leftPanel"></div></div><div id="holder"><h2>Below are a list of locations that match your budget.<br/>Click to customize the activities you can do!</h2></div>';
 		  $('#container').html(t);
 
@@ -71,6 +74,9 @@ socket.on('potentialAdventures', function(data){
 
  });//on potential adventures
 
+function handleDeals(element, index, array) {
+  console.log("a received ",element,element[0].destinationTLA);
+}
 function purchase(city){
 /*
 	***
@@ -133,12 +139,10 @@ function setDates(){
 	today = mm+'/'+dd+'/'+yyyy;
 	if(leavet=="")
 		leavet = today;
-	if(returnt=="")
-		returnt=today;
+
 
     $( "#leaving" ).datepicker();
     $( "#leaving" ).datepicker("setDate", leavet);
-    $( "#returning" ).datepicker();
-    $( "#returning" ).datepicker("setDate", returnt);
+
 
 }

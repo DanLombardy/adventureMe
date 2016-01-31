@@ -15,7 +15,14 @@ var entryform = function(elem, type){
 	t+='placeholder="Spend" required/>'+spacer;
 	t+=airportData;
 	t+='<input type="text" id="leaving" placeholder="Leaving" required>'+spacer;
-	t+='<input type="text" id="returning" placeholder="Returning" required>'+spacer;
+	
+	t+='<select id="returning">';
+	for(var n=2; n<=7;n++){
+			console.log(n);
+				t+='<option value="'+n+'">'+n+'</option>';
+	}
+	t+="</select>"+spacer;
+	
 	t+='<select id="numPeople">';
 			
 					for(var i=1; i<12;i++){
@@ -60,7 +67,6 @@ function verifySearch(){
 	 departcity = $('#departureCity').val();
 	 
 	 var new_leave = new Date(leavet);
-	 var new_return = new Date(returnt);
 
 	var dd = new_leave.getDate();
 	var mm = new_leave.getMonth()+1; //January is 0!
@@ -76,23 +82,9 @@ function verifySearch(){
 	
 	var leaveFormatted = yyyy+"-"+mm+"-"+dd;
 	
-	
-	var dd = new_return.getDate();
-	var mm = new_return.getMonth()+1; //January is 0!
-	var yyyy = new_return.getFullYear();
-	
-	if(dd<10) {
-	    dd='0'+dd
-	} 
-	
-	if(mm<10) {
-	    mm='0'+mm
-	} 
-	
 
-	var returnFormatted = yyyy+"-"+mm+"-"+dd;	
 	
-	var data = {spend: spendt, leave:leaveFormatted, return:returnFormatted,IATA:departcity,  persons:personst};
+	var data = {spend: spendt, leave:leaveFormatted, return:returnt,IATA:departcity,  persons:personst};
 	
 	console.log(data)
 	 socket.emit('formData', data);

@@ -203,3 +203,8 @@ input[type="button"]:hover
 		font-size: 50px;
 		width:100%;
 	}
+	
+	#advertisement{
+		position: absolute;
+		z-index: 9;
+	}
