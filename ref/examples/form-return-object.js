@@ -70,10 +70,70 @@
       ]
   },
   events : {
-
+    capacity: 500
+  	category_id: 4387834687 ,
+  	currency: "US",
+  	description:"A big ol event" ,
+  	_id: {},
+  	end: {},
+  	logo: ,
+  	name: ,
+  	start: ,
+  	status: ,
+  	ticket_classes:,
+  	url: ,
+  	venue:
   },
   thingsToDo: {
-
+    {
+      "id": "327836",
+      "title": "London Eye, Madame Tussauds, SEA LIFE & Shrek's Adventure: Combo Saver",
+      "imageUrl": "//hopscotch-star.us-east-1.prod.expedia.com/lx/mv/100985/lxmedia-327836-350x197-0.jpeg",
+      "largeImageURL": "//hopscotch-star.us-east-1.prod.expedia.com/lx/mv/100985/lxmedia-327836-1005x565-0.jpeg",
+      "fromPrice": "$72",
+      "fromPriceLabel": "per adult",
+      "fromOriginalPrice": "$123",
+      "fromOriginalPriceValue": "122.65",
+      "duration": "30d",
+      "fromPriceTicketType": "adult",
+      "freeCancellation": false,
+      "discountPercentage": "41",
+      "categories": [
+        "Attractions",
+        "Sightseeing Passes"
+      ],
+      "latLng": "51.5031864,-0.1195192",
+      "redemptionType": "Print",
+      "supplierName": "Merlin Entertainments (Dungeons) Limited UK",
+      "recommendationScore": 0,
+      "discountType": null,
+      "shortDescription": null
+    },
+    {
+      "id": "169746",
+      "title": "Harry Potter Warner Bros. Studio Tour by Golden Tours",
+      "imageUrl": "//hopscotch-star.us-east-1.prod.expedia.com/lx/mv/100985/lxmedia-169746-350x197-0.jpeg",
+      "largeImageURL": "//hopscotch-star.us-east-1.prod.expedia.com/lx/mv/100985/lxmedia-169746-1005x565-0.jpeg",
+      "fromPrice": "$79",
+      "fromPriceLabel": "per adult",
+      "fromOriginalPrice": "$95",
+      "fromOriginalPriceValue": "94.02",
+      "duration": "6h 30m",
+      "fromPriceTicketType": "adult",
+      "freeCancellation": false,
+      "discountPercentage": "16",
+      "categories": [
+        "Attractions",
+        "Day Trips & Excursions",
+        "Theme Parks"
+      ],
+      "latLng": "51.690955,-0.417791",
+      "redemptionType": "Voucherless",
+      "supplierName": "Golden Tours",
+      "recommendationScore": 89,
+      "discountType": null,
+      "shortDescription": null
+    },
   }
-} 
+}
 ]
