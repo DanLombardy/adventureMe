@@ -8,11 +8,29 @@ var airportData = "";
 var htmCity = "";
 socket.on('eventData', function(data){
 	console.log("eventData Response", data);
-	
 	$('#container').html(htmCity);
 	entryform(document.getElementById('leftPanel'), "sidePanel");
 	setDates();
-});
+
+	var evt = data.events;
+	for(var x=0; x<evt.length;x++){
+		var hhh = "<div class='evt'>";
+		hhh+="<input type='checkbox'/><strong>"+evt[x].costUSD.name+"</strong>";
+		
+		if(evt[x].hasOwnProperty("logo"))
+			hhh+="<br/><img src='"+evt[x].logo.url+"'/>";
+		if(evt[x].costUSD.description!=null)
+			hhh+="<br/>"+evt[x].costUSD.description;
+		hhh+="<br/>COST: "+evt[x].costUSD.cost;
+		hhh+='</div>';
+		$('#holder').append(hhh);
+
+	}
+	$('#holder').append('<button>Buy Now</button>');
+	
+	});
+
+
 socket.on('potentialAdventures', function(data){
 		var potentialAdventures = data;
 
