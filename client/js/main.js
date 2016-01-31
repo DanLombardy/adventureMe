@@ -1,4 +1,4 @@
- var socket = io.connect('http://localhost:3000/');
+var socket = io.connect('http://localhost:3000/');
 var spendt = "";
 var leavet = "";
 var returnt = "";
@@ -6,9 +6,9 @@ var personst = "";
 var departcity="";
 var airportData = "";
 
-  socket.on('potentialAdventures', function(data){
+socket.on('potentialAdventures', function(data){
 		var potentialAdventures = data;
-		  
+		  console.log("received emit");
 		  if(!data){
 			  //handle a failure
 		  }
@@ -24,12 +24,13 @@ var airportData = "";
 		  var cities = ["NewYork","Seattle","Chicago","LosAngeles","Atlanta","Orlando","DallasFortWorth","Denver","Miami","Newark","SanFrancisco","Houston","Beijing","Dubai","Tokyo","London","HongKong","Bangkok","Shanghai","Paris","Guangzhou","Singapore","Istanbul","Seoul","Frankfurt","Amsterdam","Delhi","SaoPaulo","Johannesburg","Cairo","Moscow","Sydney","Prague","Rome"];
 						
 			for(var i=0; i<cities.length;i++){
-				var str = '<div id="'+cities[i]+'Viewer" class="cityViewer">';
+				var str = '<div id="'+cities[i]+'" class="cityViewer">';
 				str+='<div class="watermark"><img src="imgs/adventureMe_white.png"/></div>';
 				str+='<div class="cityLabel"><span class="cityTag">'+cities[i]+'</span></div>';
 				str+='<div class="topImage"><img src="imgs/'+cities[i]+'/cover.jpeg" /></div>';
 				str+='<div class="animation"><img src="imgs/'+cities[i]+'/animation.gif"/></div>';
 				str+='</div>';
+				str+="<div id='"+cities[i]+"_display' class='dealsBlurb'></div>";
 				$('#holder').append(str);
 			}
 		$(function() {
@@ -45,10 +46,42 @@ var airportData = "";
 			  var elem = document.getElementById(this.id).getElementsByClassName("topImage");
 					  $(elem[0]).css("visibility","visible");
 			});
+			
+			$('.cityViewer').click(function() {
+				console.log("you clicked "+this.id);
+				var displayStr = "#"+this.id+"_display";
+				console.log("you clicked "+this.id, displayStr);
+				
+/*
+				This 
+				IS WHERE THERE DATA FROM THEIR 
+				FUCNTIONS ON THE DEAL WILL GO AS A STRING
+*/
+				$(displayStr).append("<p>Qui  gochujang labore magna semiotics schlitz.  Mlkshk artisan narwhal, sint  vinyl labore biodiesel small batch aliquip exercitation aute.  Pork belly craft beer freegan synth bushwick.  Helvetica veniam typewriter dreamcatcher, swag tacos labore meh kogi deserunt  brunch umami ad.  Disrupt post-ironic bitters excepteur  beard blue bottle, pabst nulla  distillery mustache enim delectus everyday carry.  XOXO deserunt  blue bottle, waistcoat dolore fixie PBR&amp;B master cleanse ullamco squid.  Yr ex readymade ullamco keffiyeh, voluptate  quis tilde chartreuse flannel man bun sed hammock.</p>");
+				
+				$(displayStr).append("<button onclick='purchase(\""+this.id+"\")'>Check Details</button>")
+			});
 			setDates();
 		});
 		  
  });//on potential adventures
+
+function purchase(city){
+/*
+	***
+	THIS IS WHERE I HANDLE THE PURCHASE SCREEN
+	
+	****
+*/
+// 	socket.emit("purchase",city);
+
+var htm = '<div id="selectionMenu"><div id="leftPanel"></div></div><div id="holder"><div id="header"><div><img src="imgs/luggage.png"/></div><div>from Seattle to ';
+htm+=city+'</div></div></div>';
+$('#container').html(htm);
+entryform(document.getElementById('leftPanel'), "sidePanel");
+setDates();
+
+}
 
 $(function() {
 	
@@ -102,5 +135,6 @@ function setDates(){
     $( "#leaving" ).datepicker("setDate", leavet);
     $( "#returning" ).datepicker();
     $( "#returning" ).datepicker("setDate", returnt);
+    
 }
 
