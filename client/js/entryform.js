@@ -44,7 +44,11 @@ var entryform = function(elem, type){
 		$("#numPeople select").val(personst);
 		$('#numPeople option[value='+personst+']').attr('selected','selected');
 	}
-		
+	$(document).keypress(function(e) {
+    if(e.which == 13) {
+       verifySearch();
+    }
+});
 
 }
 
