@@ -76,46 +76,46 @@ io.on(enums.CONNECTION, function(socket){
 //var funFund = budget * .4;
 //deals = dealsRequester();
 
-var getAdventureDeals = function(budget, startDate, endDate, lengthOfStay, originTLA, personCount, socket) {
-  var airportRelationships = require('./ref/distances.js').filter(function(airport) {
-    return airport.IATA === originTLA;
-  })[0].relationships;
-  seedDeals(budget * .6, startDate, endDate, lengthOfStay, originTLA, function(cities) {
-    cities.sort(function(deals1, deals2) {
-      return airportRelationships[deals2[0].destinationTLA] - airportRelationships[deals1[0].destinationTLA];
-    });
-    var deals = {deals: cities.slice(0,9)};
-    console.log(deals);
-    //   parse data and return data or false, this is a place holder for me
-    socket.emit('potentialAdventures', deals);
-  });
-};
-
-//for tests only
-var seedDeals = function(budget, startDate, endDate, originTLA, personCount, callback) {
-  callback([[{destinationTLA: "SEA"}, {}, {}], [{destinationTLA: "LAX"}, {}, {}], [{destinationTLA: "HKG"}] ]);
-}
-
-var getEventDeals = function(budget, startDate, endDate, city) {
-  Eventbrite.find({/* filter for: remaining budget, city, */}, function(err, data) {
-    if (err) console.log(err);
-    //
-    eventData = data;
-    console.log(data);
-    ToDo.find({}, function(err, data) {
-      //broadcast events data
-    })
-  })
-}
-
-//getAdventureBundles(null, null, null, null, null);
-function getDateDifference(startDate, endDate) {
-  var startDate = moment(startDate);
-  var endDate = moment(endDate);
-  return endDate.diff(startDate, 'days');
-}
-
-getAdventureDeals(null, null, null, null, "JFK", null);
+// var getAdventureDeals = function(budget, startDate, endDate, lengthOfStay, originTLA, personCount, socket) {
+//   var airportRelationships = require('./ref/distances.js').filter(function(airport) {
+//     return airport.IATA === originTLA;
+//   })[0].relationships;
+//   seedDeals(budget * .6, startDate, endDate, lengthOfStay, originTLA, function(cities) {
+//     cities.sort(function(deals1, deals2) {
+//       return airportRelationships[deals2[0].destinationTLA] - airportRelationships[deals1[0].destinationTLA];
+//     });
+//     var deals = {deals: cities.slice(0,9)};
+//     console.log(deals);
+//     //   parse data and return data or false, this is a place holder for me
+//     socket.emit('potentialAdventures', deals);
+//   });
+// };
+//
+// //for tests only
+// var seedDeals = function(budget, startDate, endDate, originTLA, personCount, callback) {
+//   callback([[{destinationTLA: "SEA"}, {}, {}], [{destinationTLA: "LAX"}, {}, {}], [{destinationTLA: "HKG"}] ]);
+// }
+//
+// var getEventDeals = function(budget, startDate, endDate, city) {
+//   Eventbrite.find({/* filter for: remaining budget, city, */}, function(err, data) {
+//     if (err) console.log(err);
+//     //
+//     eventData = data;
+//     console.log(data);
+//     ToDo.find({}, function(err, data) {
+//       //broadcast events data
+//     })
+//   })
+// }
+//
+// //getAdventureBundles(null, null, null, null, null);
+// function getDateDifference(startDate, endDate) {
+//   var startDate = moment(startDate);
+//   var endDate = moment(endDate);
+//   return endDate.diff(startDate, 'days');
+// }
+//
+// getAdventureDeals(null, null, null, null, "JFK", null);
 
 
 
