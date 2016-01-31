@@ -18,7 +18,7 @@ var entryform = function(elem, type){
 	
 	t+='<select id="returning">';
 	for(var n=2; n<=7;n++){
-			console.log(n);
+			
 				t+='<option value="'+n+'">'+n+'</option>';
 	}
 	t+="</select>"+spacer;

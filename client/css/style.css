@@ -1,4 +1,13 @@
-
+.evt{
+	
+	width:500px;
+	margin-left: auto;
+	margin-right:auto;
+	text-align: left;
+	padding-bottom: 50px;
+	position: relative;
+    top: 300;
+}
 body{
 	margin:0px;
 	font-family: 'Lato', sans-serif;
