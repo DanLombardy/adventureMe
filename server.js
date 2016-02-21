@@ -67,7 +67,7 @@ io.on(enums.CONNECTION, function(socket){
 
     socket.on('eventRequest', function(data){
         var remainingMoney = budget - data.cost;
-        console.log("Event data is" + data);
+        console.log("Event data is " + data.city + " some other cost: "+ data.cost);
         getEventData(remainingMoney, startDate, endDate, data.city, function(eventJSON){
           console.log(eventJSON);
           socket.emit("eventData", eventJSON);
@@ -139,6 +139,15 @@ function datePlus90(startDate) {
   return momentStart.add(90, 'days').format("YYYY-MM-DD");
 };
 
+// function capitalStringSpacer(str){
+//     for(var i = 0; i < str.length; i++ ){
+//       if(str.charCodeAt(i) < 60){
+//       var string =  str.slice(i, -str.length)
+//
+//
+//       }
+//
+// }
 
 
 
