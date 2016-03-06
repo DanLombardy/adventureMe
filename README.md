@@ -10,7 +10,7 @@ adventureMe takes a budget, vacation length, search start date, and takeoff poin
 
 This setup requires an installation of mongoDB, NPM, and Node.
 
-To run the application, enter:
+To install dependencies, enter:
 
 `npm install`
 
