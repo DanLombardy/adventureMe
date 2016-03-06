@@ -31,4 +31,5 @@ CAI: "Cairo",
 SVO: "Moscow",
 SYD: "Sydney",
 PRG: "Prague",
-FCO: "Rome"}
+FCO: "Rome"
+};

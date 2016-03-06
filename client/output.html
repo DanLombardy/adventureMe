@@ -7,15 +7,14 @@
 	<link rel="stylesheet" href="js/jquery-ui-1.11.4.custom/jquery-ui.css">
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,900,400italic,300italic' rel='stylesheet' type='text/css'>
 	
-
 	<script>
 
 			$(function() {
 			    $( "#leaving" ).datepicker();
 			    $( "#returning" ).datepicker();
 			});
-			
-			
+
+
 	</script>
 	<style>
 		body{
@@ -27,13 +26,13 @@
 			height:100vh;
 		}
 		.background{
-			  background: url("imgs/cover_1.png") no-repeat center center fixed; 
+			  background: url("imgs/cover_1.png") no-repeat center center fixed;
 			  -webkit-background-size: cover;
 			  -moz-background-size: cover;
 			  -o-background-size: cover;
 			  background-size: cover;
 		}
-		
+
 		#entryForm{
 			background-color: #000000;
 		    padding: 2vw;
@@ -46,9 +45,9 @@
 		    text-align: center;
 		    margin-left: auto;
 		    margin-right: auto;
-		   
+
 		}
-		
+
 	</style>
 </head>
 
@@ -56,7 +55,7 @@
 	<div id="container">
 		<div id="2doImgs"></div>
 		<!-- 	this is bullshit -->
-		
+
 <!-- 		need johannesburg -->
 	<script src="../ref/picture_sources/johannesburg.js"></script>
 	<script src="../ref/picture_sources/san_francisco.js"></script>
@@ -68,9 +67,8 @@
 	<script src="../ref/picture_sources/sydney.js"></script>
 	<script src="../ref/picture_sources/tokyo.js"></script>
 <!-- 		<script src="../ref/picture_sources/"></script> -->
-		
-		
-		<!-- 	end the bullshit -->
+
+
 		<script>
 			var city="Johannesburg";
 			$('#2doImgs').append("(cd /Library/WebServer/Documents/adventureMe/client/imgs/;");
@@ -85,9 +83,9 @@
 				if(i>20)
 					break;
 			}
-		
+
 			$('#2doImgs').append("convert -delay 50  -size 700x394  -dispose previous *  -loop 0  animation.gif");
-			
+
 			$('#2doImgs').append(")");
 		</script>
 	</div>

@@ -6,6 +6,7 @@ var personst = "";
 var departcity="";
 var airportData = "";
 var htmCity = "";
+
 socket.on('eventData', function(data){
 	console.log("eventData Response", data);
 	$('#container').html(htmCity);
@@ -16,7 +17,7 @@ socket.on('eventData', function(data){
 	for(var x=0; x<evt.length;x++){
 		var hhh = "<div class='evt'>";
 		hhh+="<input type='checkbox'/><strong>"+evt[x].costUSD.name+"</strong>";
-		
+
 		if(evt[x].hasOwnProperty("logo"))
 			hhh+="<br/><img src='"+evt[x].logo.url+"'/>";
 		if(evt[x].costUSD.description!=null)
@@ -27,31 +28,28 @@ socket.on('eventData', function(data){
 
 	}
 	$('#holder').append('<button>Buy Now</button>');
-	
+
 	});
 
 
 socket.on('potentialAdventures', function(data){
 		var potentialAdventures = data;
+		console.log("received emit");
 
-		  console.log("received emit");
+	  if(!data){
+		  //handle a failure
+		  return null;
+	  }
 
 
+	  var t='<div id="selectionMenu"><div id="leftPanel"></div></div><div id="holder"><h2>Below are a list of locations that match your budget.<br/>Click to customize the activities you can do!</h2></div>';
+	   $('#container').html(t);
 
-		  if(!data){
-			  //handle a failure
-			  return null;
-		  }
+	  //load the page elements
 
-		 
-		  var t='<div id="selectionMenu"><div id="leftPanel"></div></div><div id="holder"><h2>Below are a list of locations that match your budget.<br/>Click to customize the activities you can do!</h2></div>';
-		   $('#container').html(t);
+	  entryform(document.getElementById('leftPanel'), "sidePanel");
 
-		  //load the page elements
-
-		  entryform(document.getElementById('leftPanel'), "sidePanel");
-		  
-		   data.deals.forEach(handleDeals);
+	   data.deals.forEach(handleDeals);
 /*
 		  var cities = ["NewYork","Seattle","Chicago","LosAngeles","Atlanta","Orlando","DallasFortWorth","Denver","Miami","Newark","SanFrancisco","Houston","Beijing","Dubai","Tokyo","London","HongKong","Bangkok","Shanghai","Paris","Guangzhou","Singapore","Istanbul","Seoul","Frankfurt","Amsterdam","Delhi","SaoPaulo","Johannesburg","Cairo","Moscow","Sydney","Prague","Rome"];
 
@@ -96,10 +94,10 @@ socket.on('potentialAdventures', function(data){
 
 var cityArr=[];
 function handleDeals(element, index, array) {
-	
+
 
 	var cityName = airport_names[element[0].destinationTLA];
-	
+
 	if($.inArray(cityName, cityArr)<0){
 		cityArr.push(cityName);
 		var str = '<div id="'+cityName+'" class="cityViewer">';
@@ -113,7 +111,7 @@ function handleDeals(element, index, array) {
 		str+='"'+cityName+'",'+element[0].totalPackagePrice+")'>Check Details</button> </div>";
 		$('#holder').append(str);
 	  	}
-	
+
 }
 function purchase(cityT,costT){
 /*
@@ -125,7 +123,7 @@ function purchase(cityT,costT){
 	htmCity = '<div id="selectionMenu"><div id="leftPanel"></div></div><div id="holder"><div id="header"><div><img src="imgs/luggage.png"/></div><div>from Seattle to ';
 	htmCity+=cityT+'</div></div></div>';
 	socket.emit("eventRequest",{city:cityT, cost:costT});
-	
+
 
 }
 
@@ -175,9 +173,6 @@ function setDates(){
 	if(leavet=="")
 		leavet = today;
 
-
     $( "#leaving" ).datepicker();
     $( "#leaving" ).datepicker("setDate", leavet);
-
-
 }

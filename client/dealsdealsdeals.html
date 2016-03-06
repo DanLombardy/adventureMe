@@ -13,20 +13,20 @@
 	<script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
 	<script src="js/socket.io/socket.io.js"></script>
 	<script src="js/main.js"></script>
-	
+
 <!-- 	end the bullshit -->
 
 </head>
 
 <body>
 	<div id="container">
-		
+
 		<div id="holder">
 			<h2>Below are a list of locations that match your budget.<br/>Click to customize the activities you can do!</h2>
-			
+
 			<script>
 				var cities = ["NewYork","Seattle","Chicago","LosAngeles","Atlanta","Orlando","DallasFortWorth","Denver","Miami","Newark","SanFrancisco","Houston","Beijing","Dubai","Tokyo","London","HongKong","Bangkok","Shanghai","Paris","Guangzhou","Singapore","Istanbul","Seoul","Frankfurt","Amsterdam","Delhi","SaoPaulo","Johannesburg","Cairo","Moscow","Sydney","Prague","Rome"];
-				
+
 				for(var i=0; i<cities.length;i++){
 					var str = '<div id="'+cities[i]+'Viewer" class="cityViewer">';
 					str+='<div class="watermark"><img src="imgs/adventureMe_white.png"/></div>';
@@ -36,13 +36,7 @@
 					str+='</div>';
 					$('#holder').append(str);
 				}
-
-				
-			</script>			
-			
-			
-		
-		
+			</script>					
 	</div>
 </body>
 </html>
